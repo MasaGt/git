@@ -1,7 +1,7 @@
 ### リポジトリにコミットしたファイルを削除したい場合
 
-1. git rm で対象ファイル削除
-2. rm　で対象ファイル削除
+1. rm　で対象ファイル削除
+2. git rm で対象ファイル削除
 
 <br>
 
@@ -41,7 +41,7 @@ git add a
 # もしくは　git rm a
 
 # aファイルを削除したということをコミットする
-git commit (a) -m "delete file a"
+git commit (a -m "delete file a")
 ```
 
 <br>
@@ -52,7 +52,7 @@ git rmコマンドの例
 git rm b
 
 # すでにbファイルを削除したことはステージングされているので、コミット
-git commit (b) -m "delete file b"
+git commit (b -m "delete file b")
 ```
 
 ---
