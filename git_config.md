@@ -16,6 +16,8 @@
 
 8. [よくある設定項目](#sec8)
 
+9. [項目をgrepする](#sec9)
+
 <br>
 
 ---
@@ -191,3 +193,13 @@ git config --global push.default current
 ```
 *これを設定していないと、pushしたときにリモートブランチを指定しろと怒られる時がある
 
+---
+<a id=sec9></a>
+
+### git configの項目をgrepする
+
+- パターンに一致した項目のみ表示する
+
+```bash
+git config --get-regexp <パターン>
+```
