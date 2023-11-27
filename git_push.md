@@ -145,9 +145,9 @@ tag -d <削除したいローカルのタグ名>
 
 ### non bareリポジトリへのpushはエラーになる
 
-- git configの receive.denyCurrentBranch にignoreを設定する
+- リモート側の git config (--local) の receive.denyCurrentBranch にignoreを設定する
 
-*そもそもノンベアリポジトリへのpushは推奨されていない
+*そもそもノンベアリポジトリへのpushは推奨されていないので多用するべきではない
 
 ```bash
 git config receive.denyCurrentBranch ignore

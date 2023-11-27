@@ -15,3 +15,17 @@
     ->リモートリポジトリとなることが多い
 
 ---
+
+### bare repositoryの作成
+
+```bash
+git init --bare
+```
+
+---
+
+### クローンするが、そのリポジトリをbare repositoryにする
+
+```bash
+git clone --bare <source> <destination>
+```
