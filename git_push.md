@@ -8,6 +8,7 @@
 6. [リモートにタグを追加したい](#sec6)
 7. [リモートのタグを削除したい](#sec7)
 8. [non bareリポジトリへのpush](#sec8)
+9. [全てのブランチの変更を一度でpushする](#sec9)
 
 ---
 <a id="sec1"></a>
@@ -151,4 +152,13 @@ tag -d <削除したいローカルのタグ名>
 
 ```bash
 git config receive.denyCurrentBranch ignore
+```
+
+---
+<a id="sec9"></a>
+
+### 全てのブランチの変更を一度でpushする
+
+```bash
+git push --all
 ```
