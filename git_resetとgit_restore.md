@@ -1,6 +1,6 @@
 ### git reset
 
-- コミットの取り消しを行う
+- HEADの状態を変更する
 
 - ステージングされた変更を取り消す
 
@@ -28,9 +28,11 @@
 
 ### git resetの使い方
 
-ステージングされた変更の取り消し
+- ステージングされた変更の取り消し
 
-- git reset <ファイル名>
+```bash
+git reset <ファイル名>
+```
 
 ```bash
 # 間違って変更途中のファイルをgit add してしまった
@@ -42,17 +44,18 @@ git reset sample.txt
 
 <br>
 
-コミットの取り消し
-
-TODO: コミットの取り消し操作を追加する
+- HEADの状態を変更する
+[詳しくはこちら](./git_reset.md)
 
 ---
 
 ### git restoreの使い方
 
-ステージングされた変更の取り消し
+- ステージングされた変更の取り消し
 
-- git restore --staged <ファイル名>
+```bash
+git restore --staged <ファイル名>
+```
 
 ```bash
 # 間違って変更途中のファイルをgit add してしまった
@@ -60,14 +63,15 @@ git add sample.txt
 
 # ステージングエリアにaddしたファイルを取り消す
 git restore --staged sample.txt
-
 ```
 
 <br>
 
-ワーキングディレクトリの変更の取り消し
+- ワーキングディレクトリの変更の取り消し
 
-- git restore <ファイル名>
+```bash
+git restore <ファイル名>
+```
 
 ```bash
 # sample.txtに変更を加えたが、やっぱり元に戻したい
