@@ -2,12 +2,16 @@
 
 1. [rebaseとは](#sec1)
 2. [rebaseの具体的なユースケース](#sec2)
-3. [リベース対象のコミットを知る](#sec3)
+3. [rebase対象のコミットを知る](#sec3)
 4. [rebaseの使い方](#sec4)
 5. [rebaseを取り消したい場合](#sec5)
 6. [コミット履歴の整理(squash)](#sec6)
 7. [コミット履歴の整理(squash) ver2](#sec7)
 8. [一番最初のコミットもrebaseの対象に含める方法](#sec8)
+9. [対話型rebase](#sec9)
+10. [rebaseする際にコンフリクトが起きた場合](#sec10)
+11. [rebaseのabort](#sec11) 
+12. [rebaseのskip](#sec12)
 
 ---
 <a id="sec1"></a>
@@ -161,3 +165,128 @@ git rebase -i --root
 # 一番最初から特定のコミットまでrebaseする場合
 git rebase -i --root <対象範囲の最後のコミットID>
 ```
+
+---
+<a id="sec9"></a>
+
+### 対話型rebase
+
+- rebaseする際、リベースするコミットたちの編集が行える
+
+例: mainとnewブランチがあり、newブランチをmainの最新コミットにリベースしたい場合
+<img src="./img/rebase_i_1.png" />
+
+<br>
+
+rebase -i でリベースする
+<img src="./img/rebase_i_2.png" />
+
+<br>
+
+viで各コミットを編集し、newブランチをmainの最新コミットにリベースする
+<img src="./img/rebase_i_3.png" />
+
+<br>
+
+リベースされたか確認する
+<img src="./img/rebase_i_4.png" />
+
+*リベースされたブランチはpush -fでしかpushできない(そのブランチの親コミットが変わっているかわ)
+
+
+---
+<a id="sec10"></a>
+
+### rebaseする際にコンフリクトが起きた場合
+
+mergeのコンフリクトと違う点
+
+- mergeのコンフリクト  
+    merge対象のブランチの全てのコミットファイルのコンフリクトがmergeの際に一気に発生する
+
+このようなリポジトリがあったとして、mainとfeatureをmergeする際にコンフリクトが起きるとしたら
+<img src="./img/conflict_merge_rebase.png">
+
+mergeコミットで一気に起きる
+<img src="./img/conflict_merge.png" />
+
+<br>
+
+- rebaseのコンフリクト  
+    リベース対象のコミットを一つ一つコピーを作成し、リベース先に繋ぐので、一個一個つなぐ際にコンフリクトが起きる
+
+このようなリポジトリがあったとして、mainとfeatureをmergeする際にコンフリクトが起きるとしたら
+<img src="./img/conflict_merge_rebase.png" />
+
+<br>
+
+もし、featureブランチのCコミットとmainでコンフリクトがあるならこうなる
+<img src="./img/conflict_rebase1.png">
+
+c'のコンフリクトを解決して git add & git rebase --continueする
+
+もし、featureブランチのDコミットとmainでコンフリクトがあるならこうなる
+<img src="./img/conflict_rebase2.png" />
+
+---
+<a id="sec11"></a>
+
+### rebaseのabort
+
+- rebase時にコンフリクトが発生した際、 git rebase --abrtとすることで、rebaseを取り消す
+
+```bash
+git rebase --skip
+```
+
+<br>
+
+例: コンフリクトが起きるrebase
+
+mainとnewブランチで同じファイルを変更していた場合
+<img src="./img/rebase_abort_skip_base.png" />
+
+<br>
+
+rebase時にコンフリクト発生
+<img src="./img/rebase_abort1.png" />
+
+<br>
+
+ログをみるとコンフリクトの起きなかったコミットはrebaseされている
+<img src="./img/rebase_abort2.png" />
+
+<br>
+
+git rebase --abort すると、今回のrebaseを全て取り消す
+<img src="./img/rebase_abort3.png" />
+
+---
+<a id="sec12"></a>
+
+### rebaseのskip
+
+- rebase時にコンフリクトが発生した際、 git rebase --skip とすることで、コンフリクトしたコミットのみを取り消すことができる  
+*コンフリクトの起きたコミットのみ --abort できるイメージ
+
+例: コンフリクトが起きるrebase
+
+mainとnewブランチで同じファイルを変更していた場合
+<img src="./img/rebase_abort_skip_base.png" />
+
+<br>
+
+rebase時にコンフリクト発生
+<img src="./img/rebase_abort1.png" />
+
+<br>
+
+ログをみるとコンフリクトの起きなかったコミットはrebaseされている
+<img src="./img/rebase_abort2.png" />
+
+<br>
+
+git rebase --skipすると、コンフリクトの起きたコミットが捨てられる  
+*リモート追跡ブランチからもそのコミットが消えている
+<img src="./img/rebase_skip_1.png" />
+
