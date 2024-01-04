@@ -62,10 +62,10 @@ git branch <ブランチ名>
 
 # ローカルで作成したブランチをローカルにpush
 # 方法1
-git push <ローカルrepo> <ブランチ名>
+git push <リモートrepo名> <ブランチ名>
 
 # 方法2
-git push -u <ローカルrepo> <ブランチ名>
+git push -u <リモートrepo名> <ブランチ名>
 # -u は --set-upstream の省略
 ```
 *以降はgit pushだけでそのブランチの変更をpushできる
@@ -85,7 +85,8 @@ git push -u <ローカルrepo> <ブランチ名>
 方法1
 ```bash
 # リモートのブランチを削除する
-git push <ローカルrepo> :<削除したいリモートブランチ>
+git push <リモートrepo名> :<削除したいリモートブランチ>
+*<リモートrepo名>と:の間に半角スペースが入っていること
 
 # ローカル側でも削除する(必要があれば)
 git branch -d <削除したいローカルブランチ>
@@ -97,7 +98,7 @@ git branch -d <削除したいローカルブランチ>
 方法2
 ```bash
 # リモートのブランチを削除する
-git push --delete <ローカルrepo> <削除したいリモートブランチ>
+git push --delete <リモートrepo名> <削除したいリモートブランチ>
 
 # ローカル側でも削除する(必要があれば)
 git branch -d <削除したいローカルブランチ>
