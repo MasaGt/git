@@ -41,6 +41,7 @@ git remote -v
 ```bash
 git remote add <ラベル名> <source>
 ```
+*source: http://xxxxxx.xxx/xxxx などの GitHub 上のリポジトリへの URL など
 
 ---
 <a id="sec4"></a>
